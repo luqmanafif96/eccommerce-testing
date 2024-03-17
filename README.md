@@ -43,23 +43,10 @@ Describe how to use the project, including any specific commands or configuratio
 
 ## Contributing
 
-If you want to contribute to this project, feel free to...
+If you want to contribute to this project, feel free to dm me via 
+- [Twitter](https://twitter.com/isluqies96)
+- [Email](luqmanafif283@gmail.com)
 
 ---
 
-## License
 
-This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
-
----
-
-## Acknowledgments
-
-- Mention any contributors or resources that have been helpful.
-- Add any other acknowledgments as needed.
-
----
-
-## Contact
-
-For inquiries or assistance, feel free to reach out to [your contact information].
