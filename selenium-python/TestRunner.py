@@ -2,6 +2,7 @@ from LandingPage import SeleniumActions
 
 actions = SeleniumActions()
 actions.navigate_to_website()
+actions.Signup_user()
     # actions.search_for_product("Selenium")
     # actions.click_on_first_product()
     # actions.add_product_to_cart()

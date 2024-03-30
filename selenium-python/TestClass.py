@@ -9,8 +9,10 @@ from dotenv import load_dotenv
 import requests as re
 
 class SeleniumActions:
+    @classmethod
     def __init__(self):
         # Load environment variables from .env file
+        print("load the website")
         load_dotenv()
 
         # Get website URL from environment variables
@@ -19,7 +21,9 @@ class SeleniumActions:
         # Initialize Chrome WebDriver
         self.driver = webdriver.Chrome()
     # check the respond code 1
+    @classmethod
     def check_resp_code(self):
+        print("checking the website or connectivity is always 200")
         try:
             resp = re.get(self.website_url)
 
@@ -33,14 +37,16 @@ class SeleniumActions:
             print("Python Error respond" . str(e))
             return False
     
-
+    @classmethod
     def navigate_to_website(self):
+        print("Check weather are able to navigate")
         if not self.check_resp_code():
             print("abort link")
             return 
         # Wait for the page to load
         try :
             # Navigate to the website
+
             self.driver.get(self.website_url)
             # we have to wait 10 milisecond to find keywords
             WebDriverWait(self.driver, 10).until(EC.title_contains("Automation Exercise"))
@@ -48,16 +54,25 @@ class SeleniumActions:
         except Exception as e :
             print("Unable to get the link", str(e))
 
+    @classmethod
     def close_browser(self):
         # Close the browser
         self.driver.quit()
 
-# Example usage:
-if __name__ == "__main__":
-    actions = SeleniumActions()
-    actions.navigate_to_website()
-    # actions.search_for_product("Selenium")
-    # actions.click_on_first_product()
-    # actions.add_product_to_cart()
-    # actions.verify_product_added_to_cart()
-    actions.close_browser()
+    @classmethod
+    def Signup_user(self):
+        url_signup = 'https://www.automationexercise.com/login'
+
+        try :
+            self.driver.find_element_by_link_text('Signup / Login').click()
+            print("redirect to signup / login page")
+        except Exception as e :
+            print("Unable to get the link", str(e))
+       
+
+
+
+
+        
+
+        
