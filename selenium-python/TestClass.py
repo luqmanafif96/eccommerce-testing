@@ -1,5 +1,4 @@
 import os
-import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -19,7 +18,9 @@ class SeleniumActions:
         self.website_url = os.getenv("WEBSITE_URL")
 
         # Initialize Chrome WebDriver
-        self.driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        options.add_argument('--ignore-certificate-errors')
+        self.driver = webdriver.Chrome(options=options)
     # check the respond code 1
     @classmethod
     def check_resp_code(self):
@@ -38,7 +39,7 @@ class SeleniumActions:
             return False
     
     @classmethod
-    def navigate_to_website(self):
+    def NavigateWeb(self):
         print("Check weather are able to navigate")
         if not self.check_resp_code():
             print("abort link")
@@ -55,19 +56,52 @@ class SeleniumActions:
             print("Unable to get the link", str(e))
 
     @classmethod
-    def close_browser(self):
+    def CloseBrowser(self):
         # Close the browser
+        self.driver.implicitly_wait(10)
         self.driver.quit()
 
     @classmethod
-    def Signup_user(self):
-        url_signup = 'https://www.automationexercise.com/login'
+    def SignupUser(self):
+        
 
         try :
             self.driver.find_element_by_link_text('Signup / Login').click()
+            self.driver.implicitly_wait(10)
             print("redirect to signup / login page")
         except Exception as e :
             print("Unable to get the link", str(e))
+
+        # locate the name and Email address
+        # Declare the email and the name
+
+        NameField =  self.driver.find_element(By.NAME,"name")
+        EmailField =  self.driver.find_element(By.XPATH,"//input[@data-qa='signup-email']")
+        BtnSignUp = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
+
+        # # check is the attribute require field is present 
+        # name_required = "required" in NameField.get_attribute("outerHTML")
+        # email_required = "required" in EmailField.get_attribute("outerHTML")
+
+        # print("Name field is required:", name_required)
+        # print("Email field is required:", email_required)
+
+        # send without the data 
+        # NameField.clear()
+        # EmailField.clear()
+        # BtnSignUp.click()
+        # self.driver.implicitly_wait(10) 
+        # send the keys
+        NameField.send_keys('TestUser 123')
+        self.driver.implicitly_wait(10) 
+        EmailField.send_keys('afif123@email.com')
+        self.driver.implicitly_wait(10) 
+        BtnSignUp.click()
+        self.driver.implicitly_wait(10) 
+
+
+
+        
        
 
 
