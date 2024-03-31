@@ -1,6 +1,9 @@
-from TestClass import SeleniumActions
+from BaseClass import SeleniumActions
+from TestClass import MainClass
 
-actions = SeleniumActions()
-actions.NavigateWeb()
-actions.SignupUser()
-actions.CloseBrowser()
+driver = SeleniumActions()
+
+
+driver.NavigateWeb()
+MainClass.SignupUser(driver)
+driver.CloseBrowser()
