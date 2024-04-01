@@ -1,13 +1,16 @@
 import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from dotenv import load_dotenv
-import requests as re
 from BaseClass import RegisterPage, SeleniumActions
+import requests as re
 class SeleniumActions:
+        # declare variable for Based class 
+    def __init__(self,driver):
+        self.driver = driver
 
     @classmethod
     def __init__(self):
@@ -43,7 +46,7 @@ class SeleniumActions:
             return False
     
     @classmethod
-    def navigate_to_website(self):
+    def NavigateWeb(self):
         print("Check weather are able to navigate")
         if not self.check_resp_code():
             print("abort link")
@@ -90,7 +93,6 @@ class RegisterPage():
     def btn_register(self, RegisterBtn):
         RegisterBtn = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
         RegisterBtn.click()
-
 
 
 class MainClass(SeleniumActions,RegisterPage):
