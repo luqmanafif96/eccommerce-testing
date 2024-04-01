@@ -4,18 +4,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-<<<<<<< HEAD
 from dotenv import load_dotenv
 import requests as re
-
+from BaseClass import RegisterPage, SeleniumActions
 class SeleniumActions:
-<<<<<<< HEAD:selenium-python/TestClass.py
-=======
-        # declare variable for Based class 
-    def __init__(self,driver):
-        self.driver = driver
 
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf:selenium-python/BaseClass.py
     @classmethod
     def __init__(self):
         # Load environment variables from .env file
@@ -31,11 +24,8 @@ class SeleniumActions:
         options.add_argument('--ignore-certificate-errors')
         self.driver = webdriver.Chrome(options=options)
     # check the respond code 1
-<<<<<<< HEAD:selenium-python/TestClass.py
-=======
         
 
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf:selenium-python/BaseClass.py
     @classmethod
     def check_resp_code(self):
         print("checking the website or connectivity is always 200")
@@ -53,11 +43,7 @@ class SeleniumActions:
             return False
     
     @classmethod
-<<<<<<< HEAD:selenium-python/TestClass.py
     def navigate_to_website(self):
-=======
-    def NavigateWeb(self):
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf:selenium-python/BaseClass.py
         print("Check weather are able to navigate")
         if not self.check_resp_code():
             print("abort link")
@@ -74,30 +60,11 @@ class SeleniumActions:
             print("Unable to get the link", str(e))
 
     @classmethod
-<<<<<<< HEAD:selenium-python/TestClass.py
-    def close_browser(self):
-=======
     def CloseBrowser(self):
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf:selenium-python/BaseClass.py
         # Close the browser
         self.driver.implicitly_wait(10)
         self.driver.quit()
 
-<<<<<<< HEAD:selenium-python/TestClass.py
-    @classmethod
-    def Signup_user(self):
-        url_signup = 'https://www.automationexercise.com/login'
-
-        try :
-            self.driver.find_element_by_link_text('Signup / Login').click()
-            print("redirect to signup / login page")
-        except Exception as e :
-            print("Unable to get the link", str(e))
-       
-
-
-
-=======
 
 class RegisterPage():
     def __init__(self,driver):
@@ -123,9 +90,8 @@ class RegisterPage():
     def btn_register(self, RegisterBtn):
         RegisterBtn = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
         RegisterBtn.click()
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf:selenium-python/BaseClass.py
-=======
-from BaseClass import RegisterPage, SeleniumActions
+
+
 
 class MainClass(SeleniumActions,RegisterPage):
     # call from Based Class
@@ -166,7 +132,6 @@ class MainClass(SeleniumActions,RegisterPage):
 
 
 
->>>>>>> d2c7fb4f5aa89f1a9b4912873590d0e43f0044cf
 
         
 
