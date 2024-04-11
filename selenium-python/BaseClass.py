@@ -94,6 +94,16 @@ class RegisterPage():
         RegisterBtn = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
         RegisterBtn.click()
 
+    def select_male(self,MaleRbtn) :
+        MaleRbtn = self.driver.find_element(By.XPATH,"//input[@id='id_gender1']")
+        MaleRbtn.click()
+        
+    def select_female(self,FmleRbtn) : 
+        FmleRbtn = self.driver.find_element(By.XPATH,"//input[@id='id_gender2']")
+        FmleRbtn.click()
+
+
+
         
 
         

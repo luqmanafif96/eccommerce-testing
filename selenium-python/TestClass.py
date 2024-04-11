@@ -68,33 +68,6 @@ class SeleniumActions:
         self.driver.implicitly_wait(10)
         self.driver.quit()
 
-
-class RegisterPage():
-    def __init__(self,driver):
-        self.driver = driver
-
-    def insert_name(self,name):
-        NameField =  self.driver.find_element(By.NAME,"name")
-
-        # checking 
-        if NameField :
-            NameField.send_keys(name)
-        else :
-            print(f"Unable to locate name field ")
-
-    def insert_email (self,email) : 
-        EmailField = self.driver.find_element(By.XPATH,"//input[@data-qa='signup-email']")
-        # checking 
-        if EmailField : 
-            EmailField.send_keys(email)
-        else :
-            print(f"unable to locate email field")
-    
-    def btn_register(self, RegisterBtn):
-        RegisterBtn = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
-        RegisterBtn.click()
-
-
 class MainClass(SeleniumActions,RegisterPage):
     # call from Based Class
     def __init__(self,driver):
@@ -103,7 +76,7 @@ class MainClass(SeleniumActions,RegisterPage):
     @staticmethod
     def SignupUser(self):
         
-
+    
         try :
             self.driver.find_element_by_link_text('Signup / Login').click()
             self.driver.implicitly_wait(10)
@@ -118,14 +91,32 @@ class MainClass(SeleniumActions,RegisterPage):
         # EmailField =  self.driver.find_element(By.XPATH,"//input[@data-qa='signup-email']")
         register_page = RegisterPage(self.driver)
         # BtnSignUp = self.driver.find_element(By.XPATH, "//button[@data-qa='signup-button']")
+        # declare the class wau
+        Waitforload = self.driver.implicitly_wait(10) 
 
-
+        #Register name 
         register_page.insert_name('TestUser 123')
-        self.driver.implicitly_wait(10) 
+        Waitforload
+        #register enmail
         register_page.insert_email('afif123@email.com')
-        self.driver.implicitly_wait(10) 
-        register_page.btn_register(self)
-        self.driver.implicitly_wait(10) 
+        Waitforload
+        try :
+            response = re.get(self.website_url+'/signup')
+            if response.status_code>= 200 and response.status_code < 300 :
+                print("Link is valid")
+            else:
+                print("The link is not valid. Status code:", response.status_code)
+            register_page.btn_register(self)
+            Waitforload
+            register_page.select_male(self)
+            Waitforload
+            register_page.select_female(self)
+            Waitforload
+            register_page.select_male(self)
+
+        except re.exceptions.RequestException as e :
+            print("Having trouble to access")
+
 
 
 
